@@ -6,7 +6,7 @@ const cors = require('cors');
 const app = express();
 const siteRoutes = require('./routes/siteRoutes');
 
-mongoose.connect(process.env.MONGODB_URI, ... {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
