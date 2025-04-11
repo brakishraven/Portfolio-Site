@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/brakishraven/fav-links-app/issues"
   },
-  "homepage": "https://github.com/brakishraven/fav-links-app#readme"
+  "homepage": "https://github.com/brakishraven/fav-links-app#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2"
+  }
 }
