@@ -7,14 +7,14 @@ const addSiteModal = new bootstrap.Modal(document.getElementById('addSiteModal')
 function addCardToPage({ name, url, category }) {
   const newCard = document.createElement('div');
   newCard.className = 'card app-card';
-  newCard.innerHTML = \`
-    <a href="\${url}" target="_blank" class="text-decoration-none text-white">
+  newCard.innerHTML = `
+    <a href="${url}" target="_blank" class="text-decoration-none text-white">
       <div class="card-body text-center">
         <i class="bi bi-globe app-icon"></i>
-        <h6 class="card-title">\${name}</h6>
+        <h6 class="card-title">${name}</h6>
       </div>
     </a>
-  \`;
+  `;
 
   const sections = document.querySelectorAll('h3');
   for (let h of sections) {
