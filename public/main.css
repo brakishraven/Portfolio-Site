@@ -1,11 +1,15 @@
 body {
     font-family: Arial, sans-serif;
-    max-width: 70rem;
+    background-color: #272727;
     margin-left: 0px;
     margin-right: 0px;
     text-align: left;
     color: white;
     overflow-x: hidden;
+    overflow-y: scroll; /* always reserves space for scrollbar */
+    scrollbar-width: none; /* Firefox */
+    display: flex;
+    flex-direction: column;
   }
   
   .newheader {
@@ -18,9 +22,7 @@ body {
     padding-right: 0%;
     margin-bottom: 15px;
   }
-  body {
-    background-color: #272727;
-  }
+  
   img {
     width: 30%;
   }
@@ -119,3 +121,40 @@ body {
   padding-left: 1rem;
 }
 
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+* {
+  scrollbar-width: none; /* Firefox */
+}
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+
+main {
+  flex: 1;
+}
+
+footer {
+  background-color: #212529; /* Dark */
+  color: white;
+  padding: 0rem 0;
+  text-align: center;
+}
