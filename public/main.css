@@ -1,92 +1,104 @@
-body {
-    font-family: Arial, sans-serif;
-    
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    text-align: left;
-    color: white;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    scrollbar-width: none;
-  }
-  
-  .newheader {
-    background-color: rgb(89, 26, 106);
-    color: rgb(241, 241, 241);
-    font-size: 18px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 0%;
-    padding-right: 0%;
-    margin-bottom: 0px;
-  }
-  body {
-    background-color: #272727;
-  }
-  img {
-    width: 30%;
-  }
-  
-  .caption {
-    font-size: 14px;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-top: 5px
-  }
-  
-  h1 {
-    font-style: bold;
-    font-size: 40px;
-    text-align:left
-  }
-  
-  h2 {
-    font-size: 24px;
-    margin-bottom: 1.5rem;
-    text-align: left
-  }
-  
-  h3 {
-    font-size: 18px;
-    margin-bottom: 1.5rem;
-    text-align: left
-  }
-  
-  p {
-    font-size: 20px;
-  }
-  
-  .otherimg {
-    max-width: 50rem;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-  
-  li {
-    text-align: left;
-  }
-
-/* Navbar Container */
-.navbar {
-  width: 100%; /* Full screen width */
-  background-color: #9735ff;
-  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
-  position: sticky;
- 
-  z-index: 1000;
-  transition: padding 0.3s ease; /* Smooth expand on hover */
+/* === Base styles === */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #272727;
+  color: white;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE and Edge */
 }
 
-/* Expand effect on hover */
+/* Hide scrollbar for Chrome, Safari, etc. */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* === Layout Wrapper === */
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* === Header === */
+.newheader {
+  background-color: rgb(89, 26, 106);
+  color: rgb(241, 241, 241);
+  font-size: 18px;
+  padding: 10px 0;
+  margin-bottom: 0;
+}
+
+/* === Typography === */
+h1 {
+  font-weight: bold;
+  font-size: 40px;
+  text-align: left;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+h3 {
+  font-size: 18px;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+h5{
+  font-size: 16px;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+p {
+  font-size: 20px;
+}
+
+li {
+  text-align: left;
+}
+
+.caption {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+/* === Images === */
+img {
+  width: 300px;
+}
+
+.otherimg {
+  max-width: 50rem;
+  margin: 30px auto;
+}
+
+/* === Navbar === */
+.navbar {
+  width: 100%;
+  background-color: #9735ff;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+  position: sticky;
+  z-index: 1000;
+  transition: padding 0.3s ease;
+}
+
 .navbar:hover {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-/* Brand Name */
 .navbar-brand {
   font-weight: bold;
   color: #fcfcfc;
@@ -98,7 +110,6 @@ body {
   color: #084298;
 }
 
-/* Navbar Links */
 .nav-link {
   color: #fffefe;
   font-weight: 500;
@@ -111,23 +122,24 @@ body {
   color: #0d6efd;
 }
 
-/* Toggler (for small screens) */
 .navbar-toggler {
   border: none;
   background-color: transparent;
 }
 
-/* Optional Collapse Padding */
 .navbar-collapse {
   padding-left: 1rem;
 }
+
+/* === Footer === */
 .footer {
   background-color: #212529;
   color: white;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
   text-align: center;
   width: 100%;
-  margin-bottom: 0px;
+  box-sizing: border-box;
+  margin-bottom: 0;
 }
 
 .footer-content {
@@ -135,6 +147,29 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+}
+
+.footer-content p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer-icons i {
+  font-size: 1.5rem;
+  margin: 0 0.5rem;
+  color: white;
+  transition: transform 0.2s;
+}
+
+.footer-icons i:hover {
+  transform: scale(1.2);
+  color: #0d6efd;
 }
 
 .footer-icons img {
@@ -148,31 +183,18 @@ body {
   transform: scale(1.1);
 }
 
-.footer-icons i {
-  font-size: 1.5rem;
-  margin: 0 0.5rem;
-  color: white;
-  transition: transform 0.2s;
-}
+/* === Responsive Footer === */
+@media (max-width: 600px) {
+  .footer {
+    padding: 1.5rem 1rem;
+  }
 
-.footer-icons i:hover {
-  transform: scale(1.2);
-  color: #0d6efd; /* bootstrap blue */
-}
+  .footer-content p {
+    font-size: 0.9rem;
+  }
 
-body::-webkit-scrollbar {
-  display: none
-}
-/* Hide scrollbars across all major browsers */
-html, body {
-  height: 100%;
-  overflow-y: scroll; /* Enables scrolling */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE and Edge */
-}
-
-/* Chrome, Safari, and other WebKit browsers */
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
-  display: none;
+  .footer-icons i {
+    font-size: 1.3rem;
+    margin: 0.4rem;
+  }
 }
