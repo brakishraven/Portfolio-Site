@@ -1,8 +1,9 @@
 body {
     font-family: Arial, sans-serif;
-    max-width: 70rem;
+    
     margin-left: 0px;
     margin-right: 0px;
+    margin-bottom: 0px;
     text-align: left;
     color: white;
     overflow-x: hidden;
@@ -18,7 +19,7 @@ body {
     padding-bottom: 10px;
     padding-left: 0%;
     padding-right: 0%;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
   }
   body {
     background-color: #272727;
@@ -70,7 +71,7 @@ body {
 
 /* Navbar Container */
 .navbar {
-  width: 100vw; /* Full screen width */
+  width: 100%; /* Full screen width */
   background-color: #9735ff;
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
   position: sticky;
@@ -123,9 +124,10 @@ body {
 .footer {
   background-color: #212529;
   color: white;
-  padding: 1.5rem 0;
+  padding: 2rem 0;
   text-align: center;
   width: 100%;
+  margin-bottom: 0px;
 }
 
 .footer-content {
