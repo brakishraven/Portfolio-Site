@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* === Base styles === */
 html, body {
   height: 100%;
@@ -92,6 +93,87 @@ img {
   position: sticky;
   z-index: 1000;
   transition: padding 0.3s ease;
+=======
+body {
+    font-family: Arial, sans-serif;
+    background-color: #272727;
+    margin-left: 0px;
+    margin-right: 0px;
+    text-align: left;
+    color: white;
+    overflow-x: hidden;
+    overflow-y: scroll; /* always reserves space for scrollbar */
+    scrollbar-width: none; /* Firefox */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .newheader {
+    background-color: rgb(89, 26, 106);
+    color: rgb(241, 241, 241);
+    font-size: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0%;
+    padding-right: 0%;
+    margin-bottom: 15px;
+  }
+  
+  img {
+    width: 30%;
+  }
+  
+  .caption {
+    font-size: 14px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 5px
+  }
+  
+  h1 {
+    font-style: bold;
+    font-size: 40px;
+    text-align:left
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 1.5rem;
+    text-align: left
+  }
+  
+  h3 {
+    font-size: 18px;
+    margin-bottom: 1.5rem;
+    text-align: left
+  }
+  
+  p {
+    font-size: 20px;
+  }
+  
+  .otherimg {
+    max-width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  li {
+    text-align: left;
+  }
+
+/* Navbar Container */
+.navbar {
+  width: 100%; /* Full screen width */
+  background-color: #9735ff;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+  position: sticky;
+ 
+  z-index: 1000;
+  transition: padding 0.3s ease; /* Smooth expand on hover */
+>>>>>>> 2b5efa638830c629fc560bce21576cc70fb84b53
 }
 
 .navbar:hover {
@@ -131,6 +213,7 @@ img {
   padding-left: 1rem;
 }
 
+<<<<<<< HEAD
 /* === Footer === */
 .footer {
   background-color: #212529;
@@ -197,4 +280,42 @@ img {
     font-size: 1.3rem;
     margin: 0.4rem;
   }
+=======
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+* {
+  scrollbar-width: none; /* Firefox */
+}
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+
+main {
+  flex: 1;
+}
+
+footer {
+  background-color: #212529; /* Dark */
+  color: white;
+  padding: 0rem 0;
+  text-align: center;
+>>>>>>> 2b5efa638830c629fc560bce21576cc70fb84b53
 }
