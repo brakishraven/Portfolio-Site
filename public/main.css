@@ -1,196 +1,212 @@
 /* Base styles */
-body, html {
+body {
+  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
-  height: 100%;
-  font-family: Arial, sans-serif;
-  background-color: #272727;
-  color: white;
-  overflow-y: scroll;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  background-color: #f9fafb;
+  color: #ffffff;
+  background-color: rgb(35, 34, 34);
+}
+/* Removed invalid CSS property outside of a selector */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-body::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
-}
-
-/* Header */
-.newheader {
-  background-color: rgb(89, 26, 106);
-  color: rgb(241, 241, 241);
-  font-size: 18px;
-  padding: 10px 0;
-  margin-bottom: 0;
-}
-
-/* Typography */
-h1 {
-  font-size: 40px;
-  font-weight: bold;
-  text-align: left;
-}
-
-h2 {
-  font-size: 24px;
-  margin-bottom: 1.5rem;
-  text-align: left;
-}
-
-h3 {
-  font-size: 18px;
-  margin-bottom: 1.5rem;
-  text-align: left;
-}
-
-h5 {
-  font-size: 18px;
-  margin-bottom: 1rem;
-}
-
-p {
-  font-size: 20px;
-  margin-bottom: 1rem;
-}
-
-li {
-  text-align: left;
-}
-
-.caption {
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-/* Images */
-img {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-}
-
-
-.otherimg {
-  max-width: 50rem;
-  margin: 30px auto;
-}
-
-/* Navbar */
+/* Navbar styles */
 .navbar {
-  width: 100%;
-  background-color: #9735ff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  transition: padding 0.3s ease;
+  background-color: #5e17a9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.navbar:hover {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
 }
 
 .navbar-brand {
-  font-weight: bold;
-  color: #fcfcfc;
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
-}
-
-.navbar-brand:hover {
-  color: #084298;
-}
-
-.nav-link {
-  color: #fff;
-  font-weight: 500;
-  margin-right: 1rem;
-  transition: color 0.3s ease;
-}
-
-.nav-link:hover,
-.nav-link.active {
-  color: #0d6efd;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #000000;
+  text-decoration: none;
 }
 
 .navbar-toggler {
+  display: none;
+  background: none;
   border: none;
-  background-color: transparent;
+  cursor: pointer;
 }
 
-.navbar-collapse {
-  padding-left: 1rem;
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
 }
 
-/* Layout */
-.wrapper {
-  min-height: 100vh;
+.navbar-links {
   display: flex;
-  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-main {
-  flex: 1;
+.nav-item {
+  margin-left: 1.5rem;
 }
 
-/* Footer */
+.nav-link {
+  color: #000000;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #3b82f6;
+}
+
+/* Color changing text effect */
+@keyframes colorChange {
+  0% { color: #3b82f6; } /* Blue */
+  25% { color: #8b5cf6; } /* Purple */
+  50% { color: #ef4444; } /* Red */
+  75% { color: #10b981; } /* Green */
+  100% { color: #3b82f6; } /* Back to blue */
+}
+
+.color-changing-text {
+  animation: colorChange 10s infinite;
+}
+
+/* Footer styles */
 .footer {
-  background-color: #212529;
+  margin-top: 3rem;
+  padding: 1.5rem 0;
+  background-color: #1f2937;
   color: white;
-  padding: 2rem 1rem;
-  text-align: center;
-  width: 100%;
-  box-sizing: border-box;
-  margin-top: auto;
 }
 
 .footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
 }
 
 .footer-icons {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.footer-icons i {
-  font-size: 1.5rem;
-  margin: 0 0.5rem;
+.footer-icons a {
   color: white;
-  transition: transform 0.2s;
+  font-size: 1.25rem;
 }
 
-.footer-icons i:hover {
-  transform: scale(1.2);
-  color: #0d6efd;
+.footer-icons a:hover {
+  color: #9ca3af;
 }
 
-/* Responsive tweaks */
+/* Responsive styles */
 @media (max-width: 768px) {
-  h1 {
-    font-size: 32px;
+  .navbar-toggler {
+    display: block;
+  }
+  
+  .navbar-menu {
+    display: none;
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0;
+    z-index: 20;
+  }
+  
+  .navbar-menu.show {
+    display: block;
+  }
+  
+  .navbar-links {
+    flex-direction: column;
+  }
+  
+  .nav-item {
+    margin: 0;
+  }
+  
+  .nav-link {
+    display: block;
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    gap: 1rem;
     text-align: center;
   }
+}
 
-  h3, h5, p {
-    text-align: center;
+/* Animated triangle base */
+.triangle-animated {
+  position: fixed;
+  width: 0;
+  height: 0;
+  z-index: 0;
+  opacity: 0.4;
+  animation: scaleFade 8s infinite ease-in-out;
+  pointer-events: none; /* so it doesn't interfere with clicks */
+}
+
+/* Top-left triangle: bottom-right angle flush */
+.top-left {
+  top: 0;
+  left: 0;
+  border-top: 0 solid transparent;
+  border-right: 0 solid transparent;
+  border-bottom: 150px solid purple;
+  border-left: 150px solid transparent;
+  transform-origin: top left;
+}
+
+/* Bottom-right triangle: top-left angle flush */
+.bottom-right {
+  bottom: 0;
+  right: 0;
+  border-bottom: 0 solid transparent;
+  border-left: 0 solid transparent;
+  border-top: 150px solid purple;
+  border-right: 150px solid transparent;
+  transform-origin: bottom right;
+}
+
+/* Scaling + fading animation */
+@keyframes scaleFade {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.2;
   }
-
-  .footer {
-    padding: 1.5rem 1rem;
+  25% {
+    transform: scale(1.3);
+    opacity: 0.4;
   }
-
-  .footer-icons i {
-    font-size: 1.3rem;
-    margin: 0.4rem;
+  50% {
+    transform: scale(1.6);
+    opacity: 0.2;
   }
-
-  .footer-content p {
-    font-size: 0.9rem;
+  75% {
+    transform: scale(1.3);
+    opacity: 0.4;
   }
 }
