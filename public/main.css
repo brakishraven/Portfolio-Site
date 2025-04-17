@@ -7,7 +7,7 @@ body {
   color: #ffffff;
   background-color: rgb(35, 34, 34);
 }
-/* Removed invalid CSS property outside of a selector */
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -16,9 +16,21 @@ body {
 
 /* Navbar styles */
 .navbar {
-  background-color: #5e17a9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: transparent; /* starts transparent */
+  color: purple
 }
+
+.navbar.scrolled {
+  background-color: #5e17a9; /* background appears after scroll */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
 
 .navbar-content {
   display: flex;
@@ -28,7 +40,7 @@ body {
 }
 
 .navbar-brand {
-  font-weight: 700;
+  font-weight: 900;
   font-size: 1.25rem;
   color: #000000;
   text-decoration: none;
@@ -158,55 +170,336 @@ body {
   }
 }
 
-/* Animated triangle base */
-.triangle-animated {
+/* Container for corner triangles */
+.triangle-carousel {
   position: fixed;
-  width: 0;
-  height: 0;
-  z-index: 0;
-  opacity: 0.4;
-  animation: scaleFade 8s infinite ease-in-out;
-  pointer-events: none; /* so it doesn't interfere with clicks */
+  width: 300px;
+  height: 300px;
+  pointer-events: none;
+  z-index: -1;
 }
 
-/* Top-left triangle: bottom-right angle flush */
-.top-left {
+/* Top-left corner */
+.triangle-carousel.top-left {
   top: 0;
   left: 0;
-  border-top: 0 solid transparent;
-  border-right: 0 solid transparent;
-  border-bottom: 150px solid purple;
-  border-left: 150px solid transparent;
   transform-origin: top left;
 }
 
-/* Bottom-right triangle: top-left angle flush */
-.bottom-right {
+/* Bottom-right corner (flipped) */
+.triangle-carousel.bottom-right {
   bottom: 0;
   right: 0;
-  border-bottom: 0 solid transparent;
-  border-left: 0 solid transparent;
-  border-top: 150px solid purple;
-  border-right: 150px solid transparent;
+  transform: rotate(180deg);
   transform-origin: bottom right;
 }
 
-/* Scaling + fading animation */
-@keyframes scaleFade {
+/* Each triangle layer */
+.triangle-carousel::before,
+.triangle-carousel::after,
+.triangle-carousel .triangle-layer {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: purple;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  opacity: 0.15;
+  animation: triangleFloat 12s infinite ease-in-out;
+  animation-delay: 0s;
+  transform: scale(1);
+}
+
+.triangle-carousel::after {
+  animation-delay: 3s;
+  opacity: 0.1;
+  transform: scale(0.9);
+}
+
+.triangle-carousel .triangle-layer {
+  animation-delay: 6s;
+  opacity: 0.08;
+  transform: scale(1.2);
+}
+
+/* Subtle float/fade animation */
+@keyframes triangleFloat {
   0%, 100% {
     transform: scale(1);
-    opacity: 0.2;
-  }
-  25% {
-    transform: scale(1.3);
-    opacity: 0.4;
+    opacity: 0.15;
   }
   50% {
-    transform: scale(1.6);
-    opacity: 0.2;
+    transform: scale(1.1);
+    opacity: 0.05;
   }
-  75% {
-    transform: scale(1.3);
-    opacity: 0.4;
+}
+
+
+
+
+.connecting-dots {
+  height: 100%;
+  width: 100%;
+}
+
+.heading {
+  position: relative;
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: normal;
+  width: fit-content;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  color: #ffffff; /* Replaced $color-text with white */
+  font-weight: 100;
+  z-index: 999;
+  font-size: 2.4rem;
+}
+
+.heading__line-1 {
+  animation-name: moveInLeft;
+  
+}
+
+.heading__line-1 span {
+  color: #ef4444; /* Replaced $color-red with red */
+  font-weight: 400;
+}
+
+.heading__line-2 {
+  animation-name: moveInRight;
+}
+
+.heading__line-1,
+.heading__line-2 {
+  font-size: 4.7rem;
+  background-color: rgba(35, 34, 34, 0.25);
+  animation-duration: 1.4s;
+  animation-timing-function: cubic-bezier(0.21, 1.11, 0.81, 0.99);
+}
+
+@media (max-width: 700px) {
+  .heading__line-1,
+  .heading__line-2 {
+    font-size: 5rem;
+    text-align: center;
+    margin-left: 4rem;
+    margin-right: 4rem;
   }
+}
+
+@media (max-width: 550px) {
+  .heading__line-1,
+  .heading__line-2 {
+    font-size: 5rem;
+  }
+}
+
+.heading__cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 2.4rem;
+  padding: 0.8rem 3rem;
+  width: 27.5rem;
+  height: 4.8rem;
+  background-color: rgba(35, 34, 34, 0.6);
+  border: 2px solid #ef4444; /* Replaced $color-red with red */
+  border-radius: 2px;
+  color: #ef4444; /* Replaced $color-red with red */
+  font-size: 2.4rem;
+  font-weight: 500;
+  cursor: pointer;
+  animation: moveInBottom 0.7s 1.2s;
+  animation-fill-mode: backwards;
+  animation-timing-function: cubic-bezier(0.21, 1.11, 0.81, 0.99);
+}
+
+@media (max-width: 1500px) {
+  .heading__cta {
+    width: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .heading__cta {
+    margin-top: 1.8rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .heading__cta {
+    padding: 0.8rem 2rem;
+  }
+}
+
+.heading__cta:before,
+.heading__cta:after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 27.5rem;
+  height: 4.8rem;
+  border-radius: 3px;
+  border: 2px solid #ef4444; /* Replaced $color-red with red */
+  filter: blur(0);
+  transform-origin: 50%;
+  z-index: -1;
+}
+
+@media (max-width: 1500px) {
+  .heading__cta:before,
+  .heading__cta:after {
+    width: 27.8rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .heading__cta:before,
+  .heading__cta:after {
+    width: 28.5rem;
+    border: 2px solid transparent;
+  }
+}
+
+.heading__cta:hover {
+  transform: translateY(-2px);
+}
+
+.heading__cta:before,
+.heading__cta:after {
+  border-color: transparent;
+  filter: blur(2px);
+  transform: scaleX(1.3) scaleY(2.2);
+  transition: 800ms transform ease, 1900ms blur ease, 700ms border-color ease;
+  pointer-events: none;
+}
+
+.heading__cta:after {
+  transition-delay: 150ms;
+}
+
+.heading__cta:active {
+  transform: translateY(-1px);
+}
+
+.heading__arrow {
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+  margin-left: 15px;
+  transform: rotate(90deg);
+  fill: #ef4444; /* Replaced $color-red with red */
+  transition: all 0.3s;
+}
+
+@media (max-width: 770px) {
+  .heading__arrow {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+@media (max-width: 615px) {
+  .heading__arrow {
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 550px) {
+  .heading__arrow {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+.connecting-dots{height:100%;width:100%}
+
+#bgCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden;
+      font-family: sans-serif;
+    }
+
+  /* Hero Section Styling */
+.hero {
+  position: relative;
+  background-color: black; /* Start with a black background */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: url('your-hero-image.jpg'); /* Set your hero image here */
+  background-size: cover;
+  background-position: center;
+  transition: background 1s ease-out; /* Smooth fade-out transition */
+  height: 100vh; /* Full screen height */
+  cursor: pointer; /* Change cursor to indicate interactivity */
+}
+
+/* Canvas (animated dots) */
+#heroCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Hero Content */
+.hero .hero-content {
+  z-index: 1;
+}
+
+.heading__line-1, .heading__line-2 {
+  color: #fff;
+}
+
+.heading__link {
+  text-decoration: none;
+  color: white;
+}
+
+.heading-cta {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 30px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.heading__arrow {
+  margin-left: 10px;
+}
+
+/* Optional: Add styling for content when scrolling down */
+main {
+  padding: 2rem;
+}
+
+/* When you scroll, remove the black background */
+body.scrolled .hero {
+  background-color: transparent;
 }

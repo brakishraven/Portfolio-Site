@@ -1,93 +1,77 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Preston Sickle Portfolio</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preston Sickle Portfolio</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="main.css">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <script defer src="index.js"></script>
+</head>
+<body>
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  </head>
-
-  <body>
-    <div class="wrapper">
-      <!-- Navbar -->
-      <nav class="navbar">
-        <div class="container mx-auto px-4">
-          <div class="navbar-content">
-            <a class="navbar-brand" href="index.html">Preston Sickle</a>
-            <button id="navbar-toggler" class="navbar-toggler" type="button" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div id="navbar-menu" class="navbar-menu">
-              <ul class="navbar-links">
-                <li class="nav-item">
-                  <a class="nav-link" href="work/index.html">Published Work</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="assignments/index.html">Assignments</a>
-                </li>
-              </ul>
-            </div>
-          </div>
+ <!-- Hero Section -->
+ <section class="hero relative w-full h-screen flex items-center justify-center bg-black text-white">
+  <canvas id="heroCanvas" class="absolute top-0 left-0 z-0 w-full h-full"></canvas>
+  <div class="hero-content relative z-10 text-center px-4">
+    <div class="heading">
+      <div class="heading__line-1 text-4xl font-bold">Hello, I'm <span>Preston</span>.</div>
+      <div class="heading__line-2 text-xl mt-2">I'm a student at Syracuse University.</div>
+      <a href="#about" class="heading__link mt-4 inline-block">
+        <div class="heading-cta bg-gray-800 text-white py-2 px-6 rounded-md">
+          View my work
+          <svg class="heading__arrow ml-2 inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+            <path d="M11.3 5.7l5.3 5.3H5c-.6 0-1 .4-1 1s.4 1 1 1h11.6l-5.3 5.3a1 1 0 001.4 1.4l7-7a1 1 0 000-1.4l-7-7a1 1 0 00-1.4 1.4z" />
+          </svg>
         </div>
-      </nav>
-
-      <!-- Main Content -->
-      <main class="container mx-auto px-4 mt-8">
-        <div class="text-center mb-8">
-          <h1 class="text-4xl font-bold color-changing-text">Preston Sickle</h1>
-          <h3 class="text-xl mt-2">Major in Journalism<br>Minor in Engineering Management</h3>
-          <h3 class="text-xl mt-2">S.I. Newhouse School of Public Communications at Syracuse University</h3>
-        </div>
-
-        <!-- Side-by-side image and intro text -->
-        <div class="flex flex-col md:flex-row items-center">
-          <div class="md:w-1/2">
-            <img src="./IMG_0282.jpeg" alt="Preston Sickle" class="rounded mx-auto" style="width: 400px; height: 300px;">
-          </div>
-          <div class="md:w-1/2 mt-4 md:mt-0">
-            <h5 class="text-xl font-semibold">Hello! Welcome to my portfolio.</h5>
-            <p class="mt-2">I am currently a student in Newhouse who is learning data journalism and the basics of coding.</p>
-          </div>
-        </div>
-
-        <!-- Timeline iframe -->
-        <div class="mt-12 text-center">
-          <iframe src='https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=v2:2PACX-1vStk47L4DysJC6AwJ2M4w5HyJ13QUWnoeN1HMBrvso9vh4ew7rceUkKhDr--3z4yMWfbR2_N1MLxy5V&font=Bitter-Raleway&lang=en&initial_zoom=2&height=650' width='50%' height='500' allowfullscreen frameborder='0'></iframe>
-        </div>
-      </main>
-
-      <!-- Footer -->
-      <footer class="footer mt-auto">
-        <div class="footer-content">
-          <p>© 2025 Preston Sickle. All rights reserved.</p>
-          <div class="footer-icons">
-            <a href="https://github.com/brakishraven" target="_blank"><i class="bi bi-github"></i></a>
-            <a href="mailto:your-email@example.com"><i class="bi bi-envelope"></i></a>
-            <a href="https://linkedin.com/in/your-profile" target="_blank"><i class="bi bi-linkedin"></i></a>
-          </div>
-        </div>
-      </footer>
+      </a>
     </div>
-<!-- Decorative Purple Triangles -->
-<div class="triangle-animated top-left"></div>
-<div class="triangle-animated bottom-right"></div>
+  </div>
+</section>
 
-    <!-- Custom JS -->
-    <script>
-      // Toggle navbar menu on mobile
-      document.getElementById('navbar-toggler').addEventListener('click', function() {
-        const menu = document.getElementById('navbar-menu');
-        menu.classList.toggle('show');
-      });
-    </script>
-  </body>
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 mt-8">
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold color-changing-text">Preston Sickle</h1>
+      <h3 class="text-xl mt-2">Major in Journalism<br>Minor in Engineering Management</h3>
+      <h3 class="text-xl mt-2">S.I. Newhouse School of Public Communications at Syracuse University</h3>
+    </div>
+
+    <!-- Side-by-side image and intro text -->
+    <div class="flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2">
+        <img src="./IMG_0282.jpeg" alt="Preston Sickle" class="rounded mx-auto" style="width: 400px; height: 300px;">
+      </div>
+      <div class="md:w-1/2 mt-4 md:mt-0">
+        <h5 class="text-xl font-semibold">Hello! Welcome to my portfolio.</h5>
+        <p class="mt-2">I am currently a student in Newhouse who is learning data journalism and the basics of coding.</p>
+      </div>
+    </div>
+
+    <!-- Timeline iframe -->
+    <div class="mt-12 text-center">
+      <iframe src='https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=v2:2PACX-1vStk47L4DysJC6AwJ2M4w5HyJ13QUWnoeN1HMBrvso9vh4ew7rceUkKhDr--3z4yMWfbR2_N1MLxy5V&font=Bitter-Raleway&lang=en&initial_zoom=2&height=650' width='50%' height='500' allowfullscreen frameborder='0'></iframe>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer mt-auto">
+    <div class="footer-content">
+      <p>© 2025 Preston Sickle. All rights reserved.</p>
+      <div class="footer-icons">
+        <a href="https://github.com/brakishraven" target="_blank"><i class="bi bi-github"></i></a>
+        <a href="mailto:your-email@example.com"><i class="bi bi-envelope"></i></a>
+        <a href="https://linkedin.com/in/your-profile" target="_blank"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="bg.js"></script>
+
+</body>
 </html>
