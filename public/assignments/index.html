@@ -1,100 +1,83 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Article Page</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<style>
+    body {
+      background-color: #000000;
+      color: black;
+      font-family: 'Inter', sans-serif;
+    }
+    article p {
+      font-size: 1.25rem; /* 20px */
+      line-height: 1.75rem;
+      margin: 1.5rem 0;
+    }
+    a {
+      color: #ff4d5a;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navigation-bar">
+    <ul class="navigation">
+      <li class="navigation__item navigation__item--active"><a href="../index.html">Home</a></li>
+      <li class="navigation__item"><a href="#about">About</a></li>
+      <li class="navigation__item"><a href="assignments/index.html">Projects</a></li>
+      <li class="navigation__item"><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Article Container -->
+  <main class="min-h-screen flex items-center justify-center p-4">
+    <article class="max-w-3xl w-full bg-[#FFFFFF] p-8 rounded-2xl shadow-lg border border-gray-700">
+      <header class="mb-6 text-center">
+        <h1 class="text-4xl text-black-800 ">Title of the Article</h1>
+        <p class="text-sm text-gray-400">By Preston Sickle • April 17, 2025</p>
+      </header>
+
+      <section class="prose prose-invert max-w-none">
+        <p>
+          Last year, car manufacturer McLaren became just the third team to win the Formula 1 Constructors Championship since 2010. Marking the end of Red Bull and Mercedes dominance over the last decade and a half. Over that time, 312 Grand Prix races have been run, with Red Bull and Mercedes winning a staggering 80% of them. While such dominance over that long of a time is astoudning, Formula 1 has seen its fair share of dominant teams.
+        </p>
 
 
-    <title>Preston Sickle Portfolio</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="../main.css">
-
-  </head>
-  <body>
-
-    <!-- *********************************** -->
-    <!-- Below is code for a header          -->
-    <!-- *********************************** -->
-
-
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="width:100vw">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="../index.html">Preston Sickle</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../work/index.html">Published Work</a>
-            </li>
-          </li>
-         
-         </ul>
-        </div>
-      </div>
-    </nav>
-
-
-      <!-- *********************************** -->
-      <!-- Below is code for headlines & text  -->
-      <!-- *********************************** -->
-
-      <div class="row">
-
-        <div class="col">
-
-         
-          <br/>
-      <!-- *********************************** -->
-      <!-- Below is code for an image          -->
-      <!-- *********************************** -->
-
-         <p>
-           (assignments)Coming soon ...
-         </p>
-
-         
-        
+        <!--Vis 1 -->
+        <div class="my-6">
+          <iframe title="Formula 1 Constructors Winner Since 2010" aria-label="Pie Chart" id="datawrapper-chart-Hj5Ht" src="https://datawrapper.dwcdn.net/Hj5Ht/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="569" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+          </script>
         </div>
 
-      </div>
+        <p>
+          
+          Starting in 1958, the Constructors Championship was added to Formula 1, paring with the already established Drivers Championship. Throughout the season points are awarded, with the higher finish, the more points are awarded. At the end of the season, the team with the most points wins the Championship. Of the 170 constructors that have ever raced, only 15 of them have won the coveted crown. Ferrari is far and away the best team in F1 history, winning almost a quarter of all Championships. Mercedes, McLaren and Williams have each won 8 or more Championships, and combined they have won a staggering 65% of all Championships. For context, the New England Patriots, the most succesful team in NFL history, have won 6 Super Bowls, just 10% of all Super Bowls.
 
-      <br/>
+        </p>
+        <p>
+          Formula 1 is a unique sport in many ways, and one of the most unique aspect of the sport
+        </p>
 
-      <!-- *********************************** -->
-      <!-- Below is how you create layout      -->
-      <!-- *********************************** -->
-
-      <!-- Begin Footer -->
-<footer class="footer">
-  <div class="footer-content">
-    <p>© 2025 Preston Sickle. All rights reserved.</p>
-    
-  <div class="footer-icons">
-    <a href="https://github.com/brakishraven" target="_blank"><i class="bi bi-github"></i></a>
-    <a href="mailto:your-email@example.com"><i class="bi bi-envelope"></i></a>
-    <a href="https://linkedin.com/in/your-profile" target="_blank"><i class="bi bi-linkedin"></i></a>
-  </div>
-  
-</footer>
+        <!--Vis 2 -->
+        <div class="my-6">
+          <iframe title="Constructors Championship Winners" aria-label="Bar Chart" id="datawrapper-chart-RgV5L" src="https://datawrapper.dwcdn.net/RgV5L/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="401" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+          </script>
+        </div>
 
 
-    <!--- end footer--> 
 
+      </section>
+    </article>
+  </main>
 
-    <!-- *********************************** -->
-    <!-- Below is required for bootstrap     -->
-    <!-- *********************************** -->
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
-
-  </body>
+</body>
 </html>

@@ -233,135 +233,19 @@ document.querySelector('#form-submit').addEventListener('click', () => {
     });
   }
 });
-window.addEventListener('scroll', function() {
-  const heroSection = document.querySelector('.hero');
-  if (window.scrollY > 50) {
-    document.body.classList.add('scrolled');
+
+window.addEventListener('scroll', () => {
+  const hero = document.querySelector('.hero');
+  const navbar = document.getElementById('mainNavbar');
+  const heroBottom = hero.offsetTop + hero.offsetHeight;
+  const scrollY = window.scrollY;
+
+  if (scrollY >= heroBottom - 100) {
+    navbar.style.display = 'block';
   } else {
-    document.body.classList.remove('scrolled');
+    navbar.style.display = 'none';
   }
 });
 
-const canvas = document.getElementById('heroCanvas');
-const ctx = canvas.getContext('2d');
-let width, height;
-const dots = [];
-const mouse = { x: null, y: null };
 
-const config = {
-  dotCount: 100,
-  maxDistance: 100,
-  dotRadius: 3, // Slightly larger for visibility
-  dotColor: "rgba(255,255,255,0.6)",
-  lineColor: "rgba(255,255,255,0.2)"
-};
 
-// Update canvas size
-function resizeCanvas() {
-  width = canvas.width = canvas.offsetWidth;
-  height = canvas.height = canvas.offsetHeight;
-}
-
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-// Dot class to handle dot properties
-class Dot {
-  constructor() {
-    this.reset();
-  }
-
-  reset() {
-    this.x = Math.random() * width;
-    this.y = Math.random() * height;
-    this.vx = (Math.random() - 0.5) * 0.5;
-    this.vy = (Math.random() - 0.5) * 0.5;
-  }
-
-  update() {
-    this.x += this.vx;
-    this.y += this.vy;
-
-    if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-      this.reset();
-    }
-  }
-
-  draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, config.dotRadius, 0, Math.PI * 2);
-    ctx.fillStyle = config.dotColor;
-    ctx.fill();
-  }
-}
-
-// Create dots
-for (let i = 0; i < config.dotCount; i++) {
-  dots.push(new Dot());
-}
-
-// Track mouse position
-canvas.addEventListener("mousemove", (e) => {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
-});
-
-canvas.addEventListener("mouseleave", () => {
-  mouse.x = null;
-  mouse.y = null;
-});
-
-// Draw the dots and connect lines based on proximity
-function animate() {
-  ctx.clearRect(0, 0, width, height);
-
-  dots.forEach(dot => {
-    dot.update();
-    dot.draw();
-  });
-
-  for (let i = 0; i < dots.length; i++) {
-    for (let j = i + 1; j < dots.length; j++) {
-      const dx = dots[i].x - dots[j].x;
-      const dy = dots[i].y - dots[j].y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-
-      // Draw connecting line if dots are within maxDistance
-      if (dist < config.maxDistance) {
-        ctx.beginPath();
-        ctx.moveTo(dots[i].x, dots[i].y);
-        ctx.lineTo(dots[j].x, dots[j].y);
-        ctx.strokeStyle = config.lineColor;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
-    }
-
-    // Highlight and connect dots on mouse proximity
-    if (mouse.x !== null) {
-      const dx = dots[i].x - mouse.x;
-      const dy = dots[i].y - mouse.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < config.maxDistance) {
-        ctx.beginPath();
-        ctx.moveTo(dots[i].x, dots[i].y);
-        ctx.lineTo(mouse.x, mouse.y);
-        ctx.strokeStyle = config.lineColor;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
-
-      // Highlight the dot near the mouse
-      if (dist < config.dotRadius * 10) {
-        ctx.beginPath();
-        ctx.arc(dots[i].x, dots[i].y, config.dotRadius * 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255, 255, 255, 1)"; // Highlighted color
-        ctx.fill();
-      }
-    }
-  }
-
-  requestAnimationFrame(animate);
-}
-
-animate();
