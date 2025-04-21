@@ -187,7 +187,7 @@ body {
   
   .heading {
     position: absolute; /* Take it out of the normal flow */
-    top: 0%;            /* Adjust this value to move it up/down */
+    top: 5%;            /* Adjust this value to move it up/down */
     left: 20%;           /* Center horizontally */
     transform: translate(-50%, -30%); /* Center it based on its size */
     z-index: 1;

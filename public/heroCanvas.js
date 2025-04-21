@@ -34,7 +34,6 @@ const colorDot = [
   'rgb(81, 162, 233)',
   'rgb(255, 77, 90)',
 ];
-
 // Dot class
 class Dot {
   constructor() {
@@ -42,9 +41,9 @@ class Dot {
     this.y = Math.random() * height;
     this.vx = -0.5 + Math.random();
     this.vy = -0.5 + Math.random();
-    this.radius = 1.5;
+    this.radius = 2; // Adjusted radius to make dots larger
 
-    // Randomly choose a color for the dot
+    // Randomly choose a color for the dot (either blue or light red)
     this.color = colorDot[Math.floor(Math.random() * colorDot.length)];
   }
 
@@ -62,23 +61,28 @@ class Dot {
       const dxMouse = this.x - mouse.x;
       const dyMouse = this.y - mouse.y;
       const distToMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-
-      // Make dots dimmer the farther they are from the mouse
+  
+      // Calculate opacity based on distance to the mouse
       let opacity = 1 - distToMouse / mouse.radius;
-      
-      // If the dot is outside the radius, apply opacity fade effect
-      if (distToMouse > mouse.radius) {
-        opacity = Math.max(0.2, opacity); // Minimum opacity limit
+  
+      // Ensure a minimum opacity (we don't want it to be fully transparent)
+      if (opacity < 0.2) {
+        opacity = 0.2; // Adjust this value as needed
       }
-
-      // Draw the dot with the calculated opacity
+  
+      // Create a "fading" effect by modifying the color's alpha value
+      const fadedColor = `${this.color.replace('rgb', 'rgba').replace(')', `, ${opacity})`)}`;  // Modify color with opacity
+  
+      // Draw the dot with the fading effect
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(129, 184, 246, ${opacity})`; // Blue color with opacity
+      ctx.fillStyle = fadedColor; // Use the color with the calculated opacity
       ctx.fill();
     }
   }
+  
 }
+
 
 function connectDots() {
   // Only connect dots if the mouse is within range
