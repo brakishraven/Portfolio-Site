@@ -6,8 +6,13 @@ let height = window.innerHeight;
 canvas.width = width;
 canvas.height = height;
 
-let points = [];
-let mouse = { x: null, y: null, radius: 150, hovering: false };
+let dots = [];
+const mouse = {
+  x: null,
+  y: null,
+  radius: 250,  // Mouse radius: dots and connections only appear within this range
+  hovering: false
+};
 
 canvas.addEventListener("mousemove", (e) => {
   mouse.x = e.x;
@@ -21,57 +26,105 @@ canvas.addEventListener("mouseleave", () => {
   mouse.hovering = false;
 });
 
-function initDots(count = 400) {
-  points = [];
-  for (let i = 0; i < count; i++) {
-    points.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      dx: (Math.random() - 0.5) * 0.5,
-      dy: (Math.random() - 0.5) * 0.5,
-      radius: 2
-    });
+// Dot color options (blue and pink)
+const colorDot = [
+  'rgb(81, 162, 233)',
+  'rgb(81, 162, 233)',
+  'rgb(81, 162, 233)',
+  'rgb(81, 162, 233)',
+  'rgb(255, 77, 90)',
+];
+
+// Dot class
+class Dot {
+  constructor() {
+    this.x = Math.random() * width;
+    this.y = Math.random() * height;
+    this.vx = -0.5 + Math.random();
+    this.vy = -0.5 + Math.random();
+    this.radius = 1.5;
+
+    // Randomly choose a color for the dot
+    this.color = colorDot[Math.floor(Math.random() * colorDot.length)];
+  }
+
+  move() {
+    this.x += this.vx;
+    this.y += this.vy;
+
+    // Bounce off the edges
+    if (this.x <= 0 || this.x >= width) this.vx *= -1;
+    if (this.y <= 0 || this.y >= height) this.vy *= -1;
+  }
+
+  draw() {
+    if (mouse.x !== null && mouse.y !== null) {
+      const dxMouse = this.x - mouse.x;
+      const dyMouse = this.y - mouse.y;
+      const distToMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+
+      // Make dots dimmer the farther they are from the mouse
+      let opacity = 1 - distToMouse / mouse.radius;
+      
+      // If the dot is outside the radius, apply opacity fade effect
+      if (distToMouse > mouse.radius) {
+        opacity = Math.max(0.2, opacity); // Minimum opacity limit
+      }
+
+      // Draw the dot with the calculated opacity
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(129, 184, 246, ${opacity})`; // Blue color with opacity
+      ctx.fill();
+    }
   }
 }
 
-function drawDots() {
-  ctx.clearRect(0, 0, width, height);
+function connectDots() {
+  // Only connect dots if the mouse is within range
+  if (mouse.x !== null && mouse.y !== null) {
+    for (let i = 0; i < dots.length; i++) {
+      const dxMouse = dots[i].x - mouse.x;
+      const dyMouse = dots[i].y - mouse.y;
+      const distToMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
 
-  for (let point of points) {
-    ctx.beginPath();
-    ctx.arc(point.x, point.y, point.radius, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(162, 58, 253, 0.41)";
-    ctx.fill();
-  }
+      // Only connect dots that are within the mouse's radius
+      if (distToMouse < mouse.radius) {
+        for (let j = i + 1; j < dots.length; j++) {
+          const dx = dots[i].x - dots[j].x;
+          const dy = dots[i].y - dots[j].y;
+          const distBetweenDots = Math.sqrt(dx * dx + dy * dy);
 
-  if (mouse.hovering) {
-    // Draw lines between the mouse and nearby points
-    for (let i = 0; i < points.length; i++) {
-      const dx = points[i].x - mouse.x;
-      const dy = points[i].y - mouse.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      if (distance < mouse.radius) {
-        ctx.beginPath();
-        ctx.moveTo(mouse.x, mouse.y);
-        ctx.lineTo(points[i].x, points[i].y);
-        ctx.strokeStyle = "rgba(0, 115, 255, .41)";
-        ctx.lineWidth = 1;
-        ctx.stroke();
+          // Connect only the dots that are close enough to each other (within 100px)
+          if (distBetweenDots < 100) {
+            const opacity = 1 - distBetweenDots / 100;
+            ctx.beginPath();
+            ctx.moveTo(dots[i].x, dots[i].y);
+            ctx.lineTo(dots[j].x, dots[j].y);
+            ctx.strokeStyle = `rgba(129, 184, 246, ${opacity})`; // Blue color with opacity
+            ctx.lineWidth = 1; // Line width
+            ctx.stroke();
+          }
+        }
       }
     }
   }
-
-  updateDots();
-  requestAnimationFrame(drawDots);
 }
 
-function updateDots() {
-  for (let point of points) {
-    point.x += point.dx;
-    point.y += point.dy;
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+  dots.forEach(dot => {
+    dot.move();
+    dot.draw();
+  });
+  connectDots();
+  requestAnimationFrame(animate);
+}
 
-    if (point.x <= 0 || point.x >= width) point.dx *= -1;
-    if (point.y <= 0 || point.y >= height) point.dy *= -1;
+function initDots(count = 500) {
+  dots = [];
+  for (let i = 0; i < count; i++) {
+    dots.push(new Dot());
   }
 }
 
@@ -82,4 +135,4 @@ window.addEventListener("resize", () => {
 });
 
 initDots();
-drawDots();
+animate();

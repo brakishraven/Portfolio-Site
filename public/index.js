@@ -248,4 +248,47 @@ window.addEventListener('scroll', () => {
 });
 
 
+  const popup = document.getElementById('wiki-popup');
+  const iframe = document.getElementById('wiki-iframe');
+
+  const wikiUrls = {
+    'Ferrari 312T': 'https://en.wikipedia.org/wiki/Ferrari_312T',
+    'Mercedes W07': 'https://en.wikipedia.org/wiki/Mercedes_F1_W07_Hybrid',
+    'Mercedes W11': 'https://en.wikipedia.org/wiki/Mercedes_AMG_F1_W11_EQ_Performance',
+    'McLaren MP4/4': 'https://en.wikipedia.org/wiki/McLaren_MP4/4',
+    'Red Bull RB19': 'https://en.wikipedia.org/wiki/Red_Bull_RB19'
+  };
+
+  // Handle hover
+  document.querySelectorAll('.car-link').forEach(link => {
+    link.addEventListener('mouseenter', (e) => {
+      const carName = e.target.getAttribute('data-car');
+      const url = wikiUrls[carName];
+      if (url) {
+        iframe.src = url;
+        popup.style.display = 'block';
+        positionPopup(e);
+      }
+    });
+
+    link.addEventListener('mousemove', (e) => {
+      positionPopup(e);
+    });
+
+    link.addEventListener('mouseleave', () => {
+      setTimeout(() => {
+        popup.style.display = 'none';
+        iframe.src = '';
+      }, 200); // tiny delay to prevent flicker if user goes into popup quickly
+    });
+  });
+
+  function positionPopup(e) {
+    const x = e.pageX + 15;
+    const y = e.pageY + 15;
+    popup.style.left = `${x}px`;
+    popup.style.top = `${y}px`;
+  }
+
+
 
